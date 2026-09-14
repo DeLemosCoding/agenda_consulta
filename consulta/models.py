@@ -3,7 +3,7 @@ from django.core.validators import MinValueValidator, MaxValueValidator
 
 # Create your models here.
 
-class Doctors(models.Model):
+class Doctor(models.Model):
     name = models.CharField(max_length=100, verbose_name="Nome")
     birth_date = models.DateField(verbose_name="Data de Nascimento")
     CRM = models.CharField(max_length=20, unique=True, verbose_name="CRM")
@@ -19,12 +19,12 @@ class Doctors(models.Model):
     class Meta:
         ordering = ["name"]
 
-class Pacients(models.Model):
+class Pacient(models.Model):
     name = models.CharField(max_length=100, verbose_name="Nome")
     birth_date = models.DateField(verbose_name="Data de Nascimento")
     CPF = models.CharField(max_length=14, unique=True, verbose_name="CPF")
-    gender = models.CharField(max_length=10, choices=[("M", "Masculino"), ("F", "Feminino")])
-    health_insurance = models.CharField(max_length=100)
+    gender = models.CharField(max_length=10, choices=[("M", "Masculino"), ("F", "Feminino")], verbose_name="Gênero")
+    health_insurance = models.CharField(max_length=100, null=True, blank=True)
 
     def __str__(self):
         return self.name
@@ -33,8 +33,8 @@ class Pacients(models.Model):
         ordering = ["name"]
 
 class Consultation(models.Model):
-    pacient = models.ForeignKey(Pacients, on_delete=models.CASCADE, verbose_name="Paciente")
-    doctor = models.ForeignKey(Doctors, on_delete=models.CASCADE, verbose_name="Médico")
+    doctor = models.ForeignKey(Doctor, on_delete=models.CASCADE, verbose_name="Médico")
+    pacient = models.ForeignKey(Pacient, on_delete=models.CASCADE, verbose_name="Paciente")
     date = models.DateTimeField(verbose_name="Data da Consulta")
 
     def __str__(self):

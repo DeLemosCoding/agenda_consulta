@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+<h1>Lista de Consultas</h1>
+
+{% for consulta in consultas %}
+
+<div>
+
+    <h2>{{ consulta.pacient.name }}</h2>
+
+    <p>Médico: {{ consulta.doctor.name }}</p>
+
+    <p>Data: {{ consulta.date|date:"d/m/Y, H:i" }}</p>
+
+    <button class="btn btn-primary">
+        
+        <a href="{% url 'consults_edit' consulta.id %}">Editar Consulta</a>
+
+    </button>
+
+    <button class="btn btn-danger">
+        
+        <a href="{% url 'consults_delete' consulta.id %}">Apagar Consulta</a>
+
+    </button>
+
+</div>
+
+<hr>
+
+{% empty %}
+
+    <p>Nenhuma consulta marcada.</p>
+
+{% endfor %}
+
+{% endblock %}

@@ -4,6 +4,53 @@
 
 {% block content %}
 
-<h2>Início</h2>
+<h1>Médicos</h1>
+
+<div class="row">
+
+    {% for doctor in doctors %}
+
+    <div class="col-md-4 mb-4">
+
+        <div class="card">
+
+            <div class="card-body">
+
+                <h2 class="card-title">{{ doctor.name }}</h2>
+
+                <p class="card-text">
+                    <strong>Especialidade:</strong>
+                    {{ doctor.expertise }}
+                </p>
+
+                <p class="card-text">
+                    <strong>CRM:</strong>
+                    {{ doctor.CRM }}
+                </p>
+
+                <p class="card-text">
+                    <strong>Classificação:</strong>
+                    {{ doctor.rating }}/5
+                </p>
+
+                <p class="card-text">
+                    <strong>Local:</strong>
+                    {{ doctor.place }}
+                </p>
+
+                <p class="card-text">
+                    <strong>Consulta:</strong>
+                    R$ {{ doctor.price }}
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    {% endfor %}
+
+</div>
 
 {% endblock %}
