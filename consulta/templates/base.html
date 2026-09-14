@@ -21,7 +21,7 @@
 
 </head>
 
-<body id="top">
+<body id="top" class="d-flex flex-column min-vh-100 overflow-x-hidden">
 
     <nav class="navbar navbar-expand-sm navbar-dark bg-success sticky-top">
 
@@ -51,6 +51,12 @@
 
                     </li>
 
+                    <li class="nav-item">
+
+                        <a class="nav-link" href="{% url 'consults_add' %}">Criar Consulta</a>
+
+                    </li>
+
                     <li class="nav-item dropdown">
 
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Menu</a>
@@ -59,7 +65,35 @@
 
                                 <li>
 
-                                    <a class="dropdown-item" href="{% url 'consults_add' %}">Criar Consulta</a>
+                                    <a class="dropdown-item" href="#">Contatos</a>
+
+                                </li>
+
+                                <li>
+
+                                    <a class="dropdown-item" href="#">Links</a>
+
+                                </li>
+
+                                <hr>
+
+                                <li>
+
+                                    <a class="dropdown-item" href="#">Sobre Nós</a>
+
+                                </li>
+
+                                <li>
+
+                                    <a class="dropdown-item" href="#">Sobre o Autor</a>
+
+                                </li>
+
+                                <hr>
+
+                                <li>
+
+                                    <a class="dropdown-item" href="#">Políticas de Privacidade</a>
 
                                 </li>
 
@@ -73,7 +107,7 @@
 
                     <input class="form-control me-2" type="text" placeholder="Search">
                     
-                    <button class="btn btn-primary" type="button">Search</button>
+                    <button class="btn btn-primary" type="button">Pesquisar</button>
 
                 </form>
 
@@ -83,9 +117,13 @@
 
     </nav>
 
-    {% block content %}
-
-    {% endblock %}
+    <main class="flex-grow-1">
+        
+        {% block content %}
+        
+        {% endblock %}
+    
+    </main>
 
     <div class="footer bg-success text-light">
 
