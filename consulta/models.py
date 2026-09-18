@@ -23,7 +23,7 @@ class Doctor(models.Model):
 class Patient(models.Model):
     name = models.CharField(max_length=100, verbose_name="Nome")
     birth_date = models.DateField(verbose_name="Data de Nascimento")
-    CPF = models.CharField(max_length=11, unique=True, verbose_name="CPF")
+    CPF = models.CharField(max_length=14, unique=True, verbose_name="CPF")
     gender = models.CharField(max_length=10, choices=[("M", "Masculino"), ("F", "Feminino")], verbose_name="Gênero")
     health_insurance = models.CharField(max_length=100, blank=True)
 

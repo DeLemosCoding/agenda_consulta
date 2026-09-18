@@ -2,26 +2,28 @@ from django import template
 
 register = template.Library()
 
-@register.filter
-def format_CRM(CRM):
-    if not CRM:
-        return ""
-
-    CRM = str(CRM).strip()
-
-    if len(CRM) == 7:
-        return f"{CRM[:2]} {CRM[2:6]}-{CRM[6:]}/RJ"
-
-    return CRM
 
 @register.filter
-def format_CPF(CPF):
-    if not CPF:
-        return ""
+def format_cpf(value):
+    value = str(value).replace(".", "").replace("-", "").strip()
 
-    CPF = str(CPF).strip()
+    if len(value) != 11:
+        return value
 
-    if len(CPF) == 11:
-        return f"{CPF[:3]}.{CPF[3:6]}.{CPF[6:9]}-{CPF[9:]}"
+    return f"{value[:3]}.{value[3:6]}.{value[6:9]}-{value[9:]}"
 
-    return CPF
+
+@register.filter
+def format_crm(value):
+    value = str(value).replace(" ", "").replace("-", "").replace("/", "").strip()
+
+    if len(value) < 3:
+        return value
+
+    uf = value[-2:].upper()
+    numero = value[:-2]
+
+    if len(numero) != 6:
+        return value
+
+    return f"{numero[:2]}-{numero[2:]}/{uf}"

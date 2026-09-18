@@ -41,7 +41,7 @@
 
                     <li class="nav-item">
 
-                        <a class="nav-link" href="{% url 'home' %}">Início</a>
+                        <a class="nav-link" href="{% url 'patients_list' %}">Lista de Pacientes</a>
 
                     </li>
 
@@ -51,17 +51,25 @@
 
                     </li>
 
-                    <li class="nav-item">
-
-                        <a class="nav-link" href="{% url 'consults_add' %}">Criar Consulta</a>
-
-                    </li>
-
                     <li class="nav-item dropdown">
 
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Menu</a>
 
                             <ul class="dropdown-menu">
+
+                                <li>
+
+                                    <a class="dropdown-item" href="{% url 'patients_add' %}">Cadastrar Paciente</a>
+
+                                </li>
+
+                                <li>
+
+                                    <a class="dropdown-item" href="{% url 'consults_add' %}">Criar Consulta</a>
+
+                                </li>
+
+                                <hr>
 
                                 <li>
 

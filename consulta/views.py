@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
-from .models import Consultation, Doctor
-from .forms import ConsultationForm
+from django.contrib.auth.decorators import login_required
+from .models import Consultation, Doctor, Patient
+from .forms import ConsultationForm, PatientForm
 
 
 # Create your views here.
@@ -11,11 +12,13 @@ def home(request):
 
     return render(request, 'index.html', { 'doctors': doctors })
 
+@login_required
 def consults_list(request):
     consultas = Consultation.objects.select_related('doctor','patient').order_by('date')
     
     return render(request, 'consults_list.html', { "consultas": consultas })
 
+@login_required
 def consults_add(request):
     if request.method == 'POST':
         form = ConsultationForm(request.POST)
@@ -30,6 +33,7 @@ def consults_add(request):
 
     return render(request, 'consults_add.html', { 'form': form })
 
+@login_required
 def consults_edit(request, id):
     consulta = get_object_or_404(Consultation, id=id)
 
@@ -46,6 +50,7 @@ def consults_edit(request, id):
 
     return render(request, 'consults_edit.html', {'form': form})
 
+@login_required
 def consults_delete(request, id):
     consulta = get_object_or_404(Consultation, id=id)
 
@@ -55,3 +60,22 @@ def consults_delete(request, id):
         return redirect("consults_list")
 
     return render(request, "consults_delete.html", {"consulta": consulta})
+
+@login_required
+def patients_add(request):
+    if request.method == 'POST':
+        form = PatientForm(request.POST)
+
+        if form.is_valid():
+            form.save()
+            return redirect('patients_list')
+    else:
+        form = PatientForm()
+
+    return render(request, 'patients_add.html', {'form': form})
+
+@login_required
+def patients_list(request):
+    patients = Patient.objects.all()
+
+    return render(request, 'patients_list.html', {'patients': patients})
