@@ -10,23 +10,17 @@
 
 <div>
 
-    <h2>{{ consulta.pacient.name }}</h2>
+    <hr>
+
+    <h3>Paciente: {{ consulta.pacient.name }}</h3>
 
     <p>Médico: {{ consulta.doctor.name }}</p>
 
     <p>Data: {{ consulta.date|date:"d/m/Y, H:i" }}</p>
 
-    <button class="btn btn-primary">
-        
-        <a href="{% url 'consults_edit' consulta.id %}">Editar Consulta</a>
+    <a href="{% url 'consults_edit' consulta.id %}" class="btn btn-primary">Editar Consulta</a>
 
-    </button>
-
-    <button class="btn btn-danger">
-        
-        <a href="{% url 'consults_delete' consulta.id %}">Apagar Consulta</a>
-
-    </button>
+    <a href="{% url 'consults_delete' consulta.id %}" class="btn btn-danger">Apagar Consulta</a>
 
 </div>
 

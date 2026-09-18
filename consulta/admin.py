@@ -1,20 +1,67 @@
 from django.contrib import admin
-from .models import Doctor, Pacient, Consultation
+from .models import Doctor, Patient, Consultation
 
 # Register your models here.
 
 @admin.register(Doctor)
-class BrandAdmin(admin.ModelAdmin):
-    list_display = ('name', 'birth_date', 'expertise', 'CRM',)
-    search_fields = ('name', 'expertise',)
+class DoctorAdmin(admin.ModelAdmin):
+    list_display = (
+        'name',
+        'expertise',
+        'CRM',
+        'place',
+        'price',
+        'rating',
+    )
 
-@admin.register(Pacient)
-class BrandAdmin(admin.ModelAdmin):
-    list_display = ('name', 'birth_date', 'CPF', 'gender',)
-    search_fields = ('name',)
+    search_fields = (
+        'name',
+        'expertise',
+        'CRM',
+    )
+
+    list_filter = (
+        'expertise',
+        'gender',
+    )
+
+@admin.register(Patient)
+class PatientAdmin(admin.ModelAdmin):
+    list_display = (
+        'name',
+        'CPF',
+        'gender',
+        'health_insurance',
+    )
+
+    search_fields = (
+        'name',
+        'CPF',
+    )
+
+    list_filter = (
+        'gender',
+        'health_insurance',
+    )
 
 @admin.register(Consultation)
-class BrandAdmin(admin.ModelAdmin):
-    list_display = ('doctor', 'pacient', 'date',)
-    list_filter = ('doctor', 'date',)
-    search_fields = ('doctor', 'date',)
+class ConsultationAdmin(admin.ModelAdmin):
+    list_display = (
+        'patient',
+        'doctor',
+        'date',
+    )
+
+    list_filter = (
+        'doctor',
+        'date',
+    )
+
+    search_fields = (
+        'patient__name',
+        'doctor__name',
+    )
+
+    ordering = (
+        'date',
+    )
