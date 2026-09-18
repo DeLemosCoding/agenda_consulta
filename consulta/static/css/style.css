@@ -5,6 +5,12 @@ a {
 nav {
     background-color:#00A971 ;
 }
+.nav:hover {
+    color: black;
+}
 .footer {
     background-color:#00A971 ;
+}
+#Login {
+    background-image: image(url(user-image.png));
 }

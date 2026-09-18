@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% load format_filters %}
+
+{% block content %}
+
+{% for doctor in doctors %}
+
+    <div class="card">
+
+        {% if doctor.photo %}
+            <img
+                src="{{ doctor.photo.url }}"
+                alt="Foto de {{ doctor.name }}"
+                class="card-img-top"
+            >
+        {% else %}
+            <div class="p-3">
+                <p>Sem foto</p>
+            </div>
+        {% endif %}
+
+        <div class="card-body">
+
+            <h5 class="card-title">
+                {{ doctor.name }}
+            </h5>
+
+            <p class="card-text">
+                {{ doctor.expertise }}
+            </p>
+
+        </div>
+
+    </div>
+
+{% endfor %}
+
+{% endblock %}

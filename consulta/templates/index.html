@@ -17,32 +17,48 @@
         <div class="card">
 
             <div class="card-body">
-                <img src="{% static 'images/'%}" alt="">
+
+                {% if doctor.photo %}
+
+                    <img src="{ doctor.photo.url }" alt="Foto do Médico">
+
+                {% endif %}
+
                 <h2 class="card-title">{{ doctor.name }}</h2>
 
                 <p class="card-text">
+
                     <strong>Especialidade:</strong>
                     {{ doctor.expertise }}
+
                 </p>
 
                 <p class="card-text">
+
                     <strong>CRM:</strong>
                     {{ doctor.CRM|format_crm }}
+
                 </p>
 
                 <p class="card-text">
+
                     <strong>Classificação:</strong>
                     {{ doctor.rating }}/5
+
                 </p>
 
                 <p class="card-text">
+
                     <strong>Local:</strong>
                     {{ doctor.place }}
+
                 </p>
 
                 <p class="card-text">
+
                     <strong>Consulta:</strong>
                     R$ {{ doctor.price }}
+
                 </p>
 
             </div>

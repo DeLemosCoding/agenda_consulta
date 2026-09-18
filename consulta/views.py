@@ -1,8 +1,8 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from .models import Consultation, Doctor, Patient
-from .forms import ConsultationForm, PatientForm
+from .models import Doctor, Patient, Consultation
+from .forms import DoctorForm, PatientForm, ConsultationForm
 
 
 # Create your views here.
@@ -11,6 +11,107 @@ def home(request):
     doctors = Doctor.objects.all()
 
     return render(request, 'index.html', { 'doctors': doctors })
+
+@login_required
+def doctors_list(request):
+    doctors = Doctor.objects.all()
+
+    return render(request, 'doctors_list.html', {'doctors': doctors})
+
+
+@login_required
+def doctors_add(request):
+    if request.method == 'POST':
+        form = DoctorForm(request.POST, request.FILES)
+
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Médico cadastrado com sucesso!')
+
+            return redirect('doctors_list')
+
+    else:
+        form = DoctorForm()
+
+    return render(request, 'doctors_add.html', {'form': form})
+
+@login_required
+def doctors_edit(request, id):
+    doctor = get_object_or_404(Doctor, id=id)
+
+    if request.method == 'POST':
+        form = DoctorForm(request.POST, request.FILES, instance=doctor)
+
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Médico atualizado com sucesso!')
+
+            return redirect('doctors_list')
+
+    else:
+        form = DoctorForm(instance=doctor)
+
+    return render(request, 'doctors_edit.html', {'form': form, 'doctor': doctor})
+
+
+@login_required
+def doctors_delete(request, id):
+    doctor = get_object_or_404(Doctor, id=id)
+
+    if request.method == 'POST':
+        doctor.delete()
+        messages.success(request, 'Médico excluído com sucesso!')
+
+        return redirect('doctors_list')
+
+    return render(request, 'doctors_delete.html', {'doctor': doctor})
+
+@login_required
+def patients_list(request):
+    patients = Patient.objects.all()
+
+    return render(request, 'patients_list.html', {'patients': patients})
+
+@login_required
+def patients_add(request):
+    if request.method == 'POST':
+        form = PatientForm(request.POST)
+
+        if form.is_valid():
+            form.save()
+            return redirect('patients_list')
+    else:
+        form = PatientForm()
+
+    return render(request, 'patients_add.html', {'form': form})
+
+@login_required
+def patients_edit(request, id):
+    patient = get_object_or_404(Patient, id=id)
+
+    if request.method == 'POST':
+        form = PatientForm(request.POST, instance=patient)
+
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Paciente atualizado com sucesso!')
+            return redirect('patients_list')
+
+    else:
+        form = PatientForm(instance=patient)
+
+    return render(request, 'patients_edit.html', {'form': form})
+
+@login_required
+def patients_delete(request, id):
+    patient = get_object_or_404(Patient, id=id)
+
+    if request.method == 'POST':
+        patient.delete()
+        messages.success(request, 'Paciente excluído com sucesso!')
+        return redirect('patients_list')
+
+    return render(request, 'patients_delete.html', {'patient': patient})
 
 @login_required
 def consults_list(request):
@@ -60,50 +161,3 @@ def consults_delete(request, id):
         return redirect("consults_list")
 
     return render(request, "consults_delete.html", {"consulta": consulta})
-
-@login_required
-def patients_list(request):
-    patients = Patient.objects.all()
-
-    return render(request, 'patients_list.html', {'patients': patients})
-
-@login_required
-def patients_add(request):
-    if request.method == 'POST':
-        form = PatientForm(request.POST)
-
-        if form.is_valid():
-            form.save()
-            return redirect('patients_list')
-    else:
-        form = PatientForm()
-
-    return render(request, 'patients_add.html', {'form': form})
-
-@login_required
-def patients_edit(request, id):
-    patient = get_object_or_404(Patient, id=id)
-
-    if request.method == 'POST':
-        form = PatientForm(request.POST, instance=patient)
-
-        if form.is_valid():
-            form.save()
-            messages.success(request, 'Paciente atualizado com sucesso!')
-            return redirect('patients_list')
-
-    else:
-        form = PatientForm(instance=patient)
-
-    return render(request, 'patients_edit.html', {'form': form})
-
-@login_required
-def patients_delete(request, id):
-    patient = get_object_or_404(Patient, id=id)
-
-    if request.method == 'POST':
-        patient.delete()
-        messages.success(request, 'Paciente excluído com sucesso!')
-        return redirect('patients_list')
-
-    return render(request, 'patients_delete.html', {'patient': patient})

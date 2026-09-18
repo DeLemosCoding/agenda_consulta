@@ -13,6 +13,7 @@ class Doctor(models.Model):
     rating = models.DecimalField(max_digits = 3, decimal_places = 2, default = 0, validators = [MinValueValidator(0), MaxValueValidator(5)], verbose_name ="Classificação")
     place = models.CharField(max_length=100, verbose_name="Local da Consulta")
     price = models.DecimalField(max_digits=10, decimal_places=2, validators=[MinValueValidator(0)], verbose_name="Preço da Consulta")
+    photo = models.ImageField(upload_to='doctors/', blank=True, null=True, verbose_name="Foto")
 
     def __str__(self):
         return self.name

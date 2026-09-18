@@ -41,6 +41,12 @@
 
                     <li class="nav-item">
 
+                        <a class="nav-link" href="{% url 'doctors_list' %}">Lista de Médicos</a>
+
+                    </li>
+
+                    <li class="nav-item">
+
                         <a class="nav-link" href="{% url 'patients_list' %}">Lista de Pacientes</a>
 
                     </li>
@@ -106,12 +112,6 @@
                                 </li>
 
                             </ul>
-                            
-                    <li class="nav-item">
-
-                        <a class="nav-link" href="{% url 'admin:index' %}">Área de Login</a>
-
-                    </li>
 
                     </li>
 
@@ -119,9 +119,11 @@
 
                 <form class="d-flex">
 
-                    <input class="form-control me-2" type="text" placeholder="Search">
-                    
-                    <button class="btn btn-primary" type="button">Pesquisar</button>
+                    <li class="nav-item" id="Login">
+
+                        <a class="nav-link" href="{% url 'admin:index' %}">Área de Login</a>
+
+                    </li>
 
                 </form>
 
