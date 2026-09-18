@@ -11,7 +11,7 @@
 
     <title>
         
-        Site
+        Vitta+
     
     </title>
 
@@ -23,11 +23,11 @@
 
 <body id="top" class="d-flex flex-column min-vh-100 overflow-x-hidden">
 
-    <nav class="navbar navbar-expand-sm navbar-dark bg-success sticky-top">
+    <nav class="navbar navbar-expand-sm navbar-dark sticky-top">
 
         <div class="container-fluid">
 
-            <a class="navbar-brand" href="{% url 'home' %}">Logo</a>
+            <a class="navbar-brand" href="{% url 'home' %}"><img src="{% static 'images/logo-vitta+.png' %}" alt="vitta+">Vitta+</a>
 
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
 
@@ -48,12 +48,6 @@
                     <li class="nav-item">
 
                         <a class="nav-link" href="{% url 'consults_list' %}">Lista de Consultas</a>
-
-                    </li>
-
-                    <li class="nav-item">
-
-                        <a class="nav-link" href="{% url 'admin:index' %}">Área de Login</a>
 
                     </li>
 
@@ -112,6 +106,12 @@
                                 </li>
 
                             </ul>
+                            
+                    <li class="nav-item">
+
+                        <a class="nav-link" href="{% url 'admin:index' %}">Área de Login</a>
+
+                    </li>
 
                     </li>
 
@@ -139,13 +139,13 @@
     
     </main>
 
-    <div class="footer bg-success text-light">
+    <div class="footer text-light">
 
         <footer class="container d-flex justify-content-between align-items-center">
 
             <a href="{% url 'home' %}"><i class="bi bi-house-door-fill fs-2"></i></a>
 
-            <div>&copy; 2026 DeLemosCoding. Todos os direitos reservados.</div>
+            <div>&copy; 2026 Vitta+. Todos os direitos reservados.</div>
 
             <a href="#top"><i class="bi bi-arrow-up-circle-fill fs-2"></i></a>
 

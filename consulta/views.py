@@ -62,6 +62,12 @@ def consults_delete(request, id):
     return render(request, "consults_delete.html", {"consulta": consulta})
 
 @login_required
+def patients_list(request):
+    patients = Patient.objects.all()
+
+    return render(request, 'patients_list.html', {'patients': patients})
+
+@login_required
 def patients_add(request):
     if request.method == 'POST':
         form = PatientForm(request.POST)
@@ -75,7 +81,29 @@ def patients_add(request):
     return render(request, 'patients_add.html', {'form': form})
 
 @login_required
-def patients_list(request):
-    patients = Patient.objects.all()
+def patients_edit(request, id):
+    patient = get_object_or_404(Patient, id=id)
 
-    return render(request, 'patients_list.html', {'patients': patients})
+    if request.method == 'POST':
+        form = PatientForm(request.POST, instance=patient)
+
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Paciente atualizado com sucesso!')
+            return redirect('patients_list')
+
+    else:
+        form = PatientForm(instance=patient)
+
+    return render(request, 'patients_edit.html', {'form': form})
+
+@login_required
+def patients_delete(request, id):
+    patient = get_object_or_404(Patient, id=id)
+
+    if request.method == 'POST':
+        patient.delete()
+        messages.success(request, 'Paciente excluído com sucesso!')
+        return redirect('patients_list')
+
+    return render(request, 'patients_delete.html', {'patient': patient})
