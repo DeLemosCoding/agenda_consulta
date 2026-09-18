@@ -18,7 +18,7 @@ class Doctor(models.Model):
         return self.name
 
     class Meta:
-        ordering = ["name"]
+        ordering = ["CRM"]
 
 class Patient(models.Model):
     name = models.CharField(max_length=100, verbose_name="Nome")
