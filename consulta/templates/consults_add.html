@@ -3,21 +3,18 @@
 {% load static %}
 
 {% block content %}
+<div class="container mt-5">
+    <h1>Criar Consulta</h1>
 
-<h1>Criar Consulta</h1>
+    <form method="POST">
 
-<form method="POST">
+        {% csrf_token %}
 
-    {% csrf_token %}
+        {{ form.as_p }}
 
-    {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Agendar consulta</button>
 
-    <button type="submit" class="btn btn-primary">
-
-        Agendar consulta
-        
-    </button>
-
-</form>
+    </form>
+</div>
 
 {% endblock %}

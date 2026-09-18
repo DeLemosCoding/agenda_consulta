@@ -2,8 +2,59 @@
 
 {% load static %}
 
-{% load format_filters %}
-
 {% block content %}
+
+<div class="container py-5">
+
+    <div class="row justify-content-center">
+
+        <div class="col-md-6">
+
+            <div class="card shadow">
+
+                <div class="card-header bg-danger text-white">
+
+                    <h3 class="mb-0">Apagar Médico</h3>
+
+                </div>
+
+                <div class="card-body text-center">
+
+                    <p>
+
+                        Tem certeza que deseja apagar o médico
+                        <strong>{{ doctor.name }}</strong>?
+
+                    </p>
+
+                    <p class="text-danger">
+
+                        Essa ação não poderá ser desfeita.
+
+                    </p>
+
+                    <form method="post">
+
+                        {% csrf_token %}
+
+                        <div class="d-flex justify-content-center gap-2">
+
+                            <a href="{% url 'doctors_list' %}" class="btn btn-primary">Cancelar</a>
+
+                            <button type="submit"class="btn btn-danger">Apagar</button>
+
+                        </div>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
 
 {% endblock %}

@@ -3,17 +3,20 @@
 {% load static %}
 
 {% block content %}
+<div class="container mt-4">
+    <h1>Editar Consulta</h1>
 
-<h1>Editar Consulta</h1>
+    <form method="POST">
 
-<form method="POST">
+        {% csrf_token %}
 
-    {% csrf_token %}
+        {{ form.as_p }}
 
-    {{ form.as_p }}
+        <a href="{% url 'consults_list' %}" class="btn btn-primary">Voltar</a>
 
-    <button type="submit" class="btn btn-primary">Salvar alterações</button>
+        <button type="submit" class="btn btn-primary">Salvar alterações</button>
 
-</form>
+    </form>
+</div>
 
 {% endblock %}

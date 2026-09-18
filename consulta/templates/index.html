@@ -1,9 +1,519 @@
 {% extends 'base.html' %}
 
-{% load static %}
-
 {% block content %}
 
-<h2>Main Page</h2>
+<!-- HERO -->
+<section class="py-5 bg-light">
+
+    <div class="container py-5">
+
+        <div class="row align-items-center">
+
+            <div class="col-lg-6 mb-4 mb-lg-0">
+
+                <span class="badge bg-success-subtle text-success mb-3 px-3 py-2">
+
+                    Cuidando de você
+
+                </span>
+
+                <h1 class="display-4 fw-bold">
+
+                    Sua saúde em boas mãos.
+
+                </h1>
+
+                <p class="lead text-secondary mt-3">
+
+                    Na Vitta+, você encontra atendimento de qualidade,
+                    profissionais especializados e um cuidado pensado
+                    para cada paciente.
+
+                </p>
+
+                <div class="mt-4">
+
+                    {% if user.is_authenticated %}
+
+                        <a href="{% url 'consults_add' %}" class="btn btn-success btn-lg px-4 me-2">
+
+                            <i class="bi bi-calendar-plus"></i>
+
+                            Agendar consulta
+
+                        </a>
+
+                    {% else %}
+
+                        <a href="{% url 'login' %}" class="btn btn-success btn-lg px-4 me-2">
+                            
+                           <i class="bi bi-calendar-plus"></i>
+                            
+                            Agendar consulta
+                        
+                        </a>
+
+                    {% endif %}
+
+                    <a href="#especialidades" class="btn btn-outline-success btn-lg px-4">
+
+                        Conheça nossos serviços
+
+                    </a>
+
+                </div>
+
+            </div>
+
+            <div class="col-lg-6 text-center">
+
+                <div class="p-5">
+
+                    <i class="bi bi-heart-pulse text-success" style="font-size: 10rem;"></i>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ESPECIALIDADES -->
+<section id="especialidades" class="py-5">
+
+    <div class="container py-4">
+
+        <div class="text-center mb-5">
+
+            <span class="text-success fw-semibold">
+
+                NOSSOS SERVIÇOS
+
+            </span>
+
+            <h2 class="fw-bold mt-2">
+
+                Especialidades para cuidar de você
+
+            </h2>
+
+            <p class="text-secondary">
+
+                Conte com profissionais preparados para diferentes
+                necessidades de saúde.
+
+            </p>
+
+        </div>
+
+        <div class="row g-4">
+
+            <div class="col-md-6 col-lg-3">
+
+                <div class="card h-100 border-0 shadow-sm text-center p-4">
+
+                    <i class="bi bi-heart-pulse text-success fs-1 mb-3"></i>
+
+                    <h5 class="fw-bold">
+
+                        Cardiologia
+
+                    </h5>
+
+                    <p class="text-secondary mb-0">
+
+                        Acompanhamento e prevenção da saúde cardiovascular.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="col-md-6 col-lg-3">
+
+                <div class="card h-100 border-0 shadow-sm text-center p-4">
+
+                    <i class="bi bi-person-hearts text-success fs-1 mb-3"></i>
+
+                    <h5 class="fw-bold">
+
+                        Clínica Geral
+
+                    </h5>
+
+                    <p class="text-secondary mb-0">
+
+                        Atendimento médico completo para diferentes
+                        necessidades.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="col-md-6 col-lg-3">
+
+                <div class="card h-100 border-0 shadow-sm text-center p-4">
+
+                    <i class="bi bi-bandaid text-success fs-1 mb-3"></i>
+
+                    <h5 class="fw-bold">
+
+                        Pediatria
+
+                    </h5>
+
+                    <p class="text-secondary mb-0">
+
+                        Cuidados especializados para a saúde de quem você mais ama.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="col-md-6 col-lg-3">
+
+                <div class="card h-100 border-0 shadow-sm text-center p-4">
+
+                    <i class="bi bi-activity text-success fs-1 mb-3"></i>
+
+                    <h5 class="fw-bold">
+
+                        Sexologia
+
+                    </h5>
+
+                    <p class="text-secondary mb-0">
+
+                        Avaliação e acompanhamento da saúde
+                        sexual do casal.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- MÉDICOS -->
+<section class="py-5 bg-light">
+
+    <div class="container py-4">
+
+        <div class="text-center mb-5">
+
+            <span class="text-success fw-semibold">
+
+                NOSSA EQUIPE
+
+            </span>
+
+            <h2 class="fw-bold mt-2">
+
+                Conheça nossos profissionais
+
+            </h2>
+
+            <p class="text-secondary">
+
+                Médicos preparados para oferecer um atendimento
+                humanizado e profissional.
+
+            </p>
+
+        </div>
+
+        <div class="row g-4">
+
+            {% for doctor in doctors %}
+
+            <div class="col-md-6 col-lg-4">
+
+                <div class="card h-100 border-0 shadow-sm">
+
+                    <div class="card-body text-center p-4">
+
+                        <div class="mb-3">
+
+                            <i class="bi bi-person-circle text-success" style="font-size: 5rem;"></i>
+
+                        </div>
+
+                        <h5 class="fw-bold">
+
+                            Dr(a). {{ doctor.name }}
+
+                        </h5>
+
+                        <p class="text-success fw-semibold mb-2">
+
+                            {{ doctor.expertise }}
+
+                        </p>
+
+                        <p class="text-secondary small">
+
+                            CRM: {{ doctor.CRM }}
+
+                        </p>
+
+                        {% if doctor.rating %}
+
+                            <div class="text-warning mb-3">
+
+                                {% for i in "12345" %}
+
+                                    {% if forloop.counter <= doctor.rating %}
+
+                                        <i class="bi bi-star-fill"></i>
+
+                                    {% else %}
+
+                                        <i class="bi bi-star"></i>
+
+                                    {% endif %}
+
+                                {% endfor %}
+
+                            </div>
+
+                        {% endif %}
+
+                        <p class="mb-1">
+
+                            <i class="bi bi-geo-alt text-success"></i>
+
+                            {{ doctor.place }}
+
+                        </p>
+
+                        <p class="fw-bold mt-3 mb-0">
+
+                            R$ {{ doctor.price }}
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            {% empty %}
+
+            <div class="col-12 text-center">
+
+                <div class="alert alert-light border">
+
+                    Nenhum médico cadastrado no momento.
+
+                </div>
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- BENEFÍCIOS -->
+<section class="py-5">
+
+    <div class="container py-4">
+
+        <div class="row align-items-center">
+
+            <div class="col-lg-5 mb-4 mb-lg-0">
+
+                <span class="text-success fw-semibold">
+
+                    POR QUE ESCOLHER A VITTA+?
+
+                </span>
+
+                <h2 class="fw-bold mt-2">
+
+                    Mais cuidado em cada atendimento.
+
+                </h2>
+
+                <p class="text-secondary">
+
+                    Nosso objetivo é proporcionar uma experiência simples,
+                    segura e acolhedora para nossos pacientes.
+
+                </p>
+
+            </div>
+
+            <div class="col-lg-7">
+
+                <div class="row g-4">
+
+                    <div class="col-md-6">
+
+                        <div class="d-flex">
+
+                            <i class="bi bi-person-check text-success fs-2 me-3"></i>
+
+                            <div>
+
+                                <h5 class="fw-bold">
+
+                                    Atendimento humanizado
+
+                                </h5>
+
+                                <p class="text-secondary">
+
+                                    Cada paciente recebe atenção individualizada.
+
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="col-md-6">
+
+                        <div class="d-flex">
+
+                            <i class="bi bi-shield-check text-success fs-2 me-3"></i>
+
+                            <div>
+
+                                <h5 class="fw-bold">
+
+                                    Segurança
+
+                                </h5>
+
+                                <p class="text-secondary">
+
+                                    Seus dados e informações são tratados com cuidado.
+
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="col-md-6">
+
+                        <div class="d-flex">
+
+                            <i class="bi bi-calendar-check text-success fs-2 me-3"></i>
+
+                            <div>
+
+                                <h5 class="fw-bold">
+
+                                    Agendamento fácil
+
+                                </h5>
+
+                                <p class="text-secondary">
+
+                                    Agende suas consultas de forma rápida e prática.
+
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="col-md-6">
+
+                        <div class="d-flex">
+
+                            <i class="bi bi-award text-success fs-2 me-3"></i>
+
+                            <div>
+
+                                <h5 class="fw-bold">
+
+                                    Profissionais qualificados
+
+                                </h5>
+
+                                <p class="text-secondary">
+
+                                    Conte com médicos especializados em diferentes áreas.
+
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- CTA -->
+<section class="py-5 bg-success text-white">
+
+    <div class="container text-center py-4">
+
+        <i class="bi bi-calendar-heart fs-1"></i>
+
+        <h2 class="fw-bold mt-3">
+
+            Cuide da sua saúde hoje.
+
+        </h2>
+
+        <p class="lead">
+
+            Agende sua consulta com um de nossos profissionais.
+
+        </p>
+
+        {% if user.is_authenticated %}
+            
+            <a href="{% url 'consults_add' %}" class="btn btn-light btn-lg px-5 mt-2">Agendar consulta</a>
+
+        {% else %}
+            
+            <a href="{% url 'login' %}" class="btn btn-light btn-lg px-5 mt-2">Entrar para agendar</a>
+
+        {% endif %}
+
+    </div>
+
+</section>
 
 {% endblock %}

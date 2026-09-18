@@ -8,13 +8,12 @@ from .forms import DoctorForm, PatientForm, ConsultationForm
 # Create your views here.
 
 def home(request):
-    doctors = Doctor.objects.all()
 
-    return render(request, 'index.html', { 'doctors': doctors })
+    return render(request, 'index.html')
 
 @login_required
 def doctors_list(request):
-    doctors = Doctor.objects.all()
+    doctors = Doctor.objects.all().order_by('CRM')
 
     return render(request, 'doctors_list.html', {'doctors': doctors})
 

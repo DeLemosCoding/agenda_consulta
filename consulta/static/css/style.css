@@ -1,10 +1,14 @@
 a {
+
     color: inherit;
     text-decoration: none;
+
 }
 
 nav {
+
     background-color: #00A971;
+
 }
 
 .nav-form {
@@ -16,39 +20,128 @@ nav {
     width: auto;
     height: auto;
 
+
 }
 
 .nav-form .nav-item {
+
     list-style: none;
+
 }
 
 .nav-form .nav-link img {
+
     width: 100px;
     height: 100px;
     object-fit: contain;
     display: block;
     margin-bottom: 10%;
+
 }
-.doctor-photo {
-    width: 100%;
-    max-height: 220px;
-    object-fit: cover;
-    border-radius: 8px;
-    margin-bottom: 10px;
-    
-}
+
 .nav:hover {
+
     color: black;
+
 }
 
 .footer {
+    
     background-color: #00A971;
+
+}
+
+.footer a {
+    color: white;
+    transition: 0.3s ease;
+}
+
+.footer a:hover {
+    color: green;
+    transform: scale(1.08);
+}
+
+/*
+.card-body {
+    
+    background-image: url("../images/fundo-banner.png");
+    border: 100%;
+    border-radius: 10px;
+    width: auto;
+    height: auto;
+
+}*/
+
+.row {
+    --bs-gutter-x: 0.75rem;
+}
+
+.card {
+    max-width: 220px;
+    min-height: 320px;
+    margin: 0 auto;
 }
 
 .card-body {
-    background-image: url("../images/fundo-banner.png");
-    background-size: cover;
+    padding: 10px;
 }
+
+.card-title {
+    font-size: 1rem;
+    margin-bottom: 8px;
+}
+
+.card-text {
+    font-size: 0.85rem;
+    margin-bottom: 6px;
+}
+
+.card-shadow {
+    font-size: 0.85rem;
+    margin-bottom: 6px;
+    border: 50%;
+    border-radius: 50%;
+}
+
+.doctor-photo {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+.logo-brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    position: relative;
+}
+
+.logo-brand img {
+    transition: transform 0.3s ease;
+}
+
+.brand-name {
+    opacity: 0;
+    transform: translateX(-8px);
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    font-weight: 700;
+    color: #fff;
+}
+
+.logo-brand:hover .brand-name,
+.logo-brand:focus-visible .brand-name {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.logo-brand:hover img,
+.logo-brand:focus-visible img {
+    transform: scale(1.05);
+}
+
 
 @media (max-width: 991px) {
     .nav-form {

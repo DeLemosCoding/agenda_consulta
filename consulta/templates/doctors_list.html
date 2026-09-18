@@ -6,7 +6,9 @@
 
 {% block content %}
 
-<h1>Médicos</h1>
+<div class="container mt-4 text-center">
+    <h1>Lista de Médicos</h1>
+</div>
 
 <div class="row">
 
@@ -68,6 +70,15 @@
                     R$ {{ doctor.price }}
 
                 </p>
+
+                <td>
+
+                    <a href="{% url 'doctors_edit' doctor.id %}" class="btn btn-primary btn-sm">Editar</a>
+
+                    <a href="{% url 'doctors_delete' doctor.id %}" class="btn btn-danger btn-sm">Apagar</a>
+
+                </td>
+
 
             </div>
 

@@ -10,12 +10,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>
-        
+
         Vitta+
-    
+
     </title>
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" >
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 
@@ -27,8 +27,10 @@
 
         <div class="container-fluid">
 
-            <a class="navbar-brand" href="{% url 'home' %}"><img src="{% static 'images/logo-vitta+.png' %}" alt="vitta+">Vitta+</a>
-
+            <a class="navbar-brand logo-brand" href="{% url 'home' %}">
+                <img src="{% static 'images/logo-vitta+.png' %}" alt="Vitta+">
+                <span class="brand-name">Vitta+</span>
+            </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
 
                 <span class="navbar-toggler-icon"></span>
@@ -61,57 +63,63 @@
 
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Menu</a>
 
-                            <ul class="dropdown-menu">
+                        <ul class="dropdown-menu">
 
-                                <li>
+                            <li>
 
-                                    <a class="dropdown-item" href="{% url 'patients_add' %}">Cadastrar Paciente</a>
+                                <a class="dropdown-item" href="{% url 'doctors_add' %}">Cadastrar Médico</a>
 
-                                </li>
+                            </li>
 
-                                <li>
+                            <li>
 
-                                    <a class="dropdown-item" href="{% url 'consults_add' %}">Criar Consulta</a>
+                                <a class="dropdown-item" href="{% url 'patients_add' %}">Cadastrar Paciente</a>
 
-                                </li>
+                            </li>
 
-                                <hr>
+                            <li>
 
-                                <li>
+                                <a class="dropdown-item" href="{% url 'consults_add' %}">Criar Consulta</a>
 
-                                    <a class="dropdown-item" href="#">Contatos</a>
+                            </li>
 
-                                </li>
+                            <hr>
 
-                                <li>
+                            <li>
 
-                                    <a class="dropdown-item" href="#">Links</a>
+                                <a class="dropdown-item" href="#">Contatos</a>
 
-                                </li>
+                            </li>
 
-                                <hr>
+                            <li>
 
-                                <li>
+                                <a class="dropdown-item" href="#">Links</a>
 
-                                    <a class="dropdown-item" href="#">Sobre Nós</a>
+                            </li>
 
-                                </li>
+                            <hr>
 
-                                <li>
+                            <li>
 
-                                    <a class="dropdown-item" href="#">Sobre o Autor</a>
+                                <a class="dropdown-item" href="#">Sobre Nós</a>
 
-                                </li>
+                            </li>
 
-                                <hr>
+                            <li>
 
-                                <li>
+                                <a class="dropdown-item" href="#">Sobre o Autor</a>
 
-                                    <a class="dropdown-item" href="#">Políticas de Privacidade</a>
+                            </li>
 
-                                </li>
+                            <hr>
 
-                            </ul>
+                            <li>
+
+                                <a class="dropdown-item" href="#">Políticas de Privacidade</a>
+
+                            </li>
+
+                        </ul>
 
                     </li>
 
@@ -121,7 +129,8 @@
 
                     <li class="nav-item" id="Login">
 
-                        <a class="nav-link" href="{% url 'admin:index' %}"><img src="{% static 'images/user-image.png' %}" alt="Login"></a>
+                        <a class="nav-link" href="{% url 'admin:index' %}"><img
+                                src="{% static 'images/user-image.png' %}" alt="Login"></a>
 
                     </li>
 
@@ -134,11 +143,11 @@
     </nav>
 
     <main class="flex-grow-1">
-        
+
         {% block content %}
-        
+
         {% endblock %}
-    
+
     </main>
 
     <div class="footer text-light">
@@ -155,7 +164,7 @@
 
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" ></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
 
