@@ -11,12 +11,17 @@
 
     <title>
 
-        Vitta+
+        {% block title %}
+
+            Vitta+
+
+        {% endblock %}
 
     </title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 
 </head>
@@ -28,9 +33,13 @@
         <div class="container-fluid">
 
             <a class="navbar-brand logo-brand" href="{% url 'home' %}">
+
                 <img src="{% static 'images/logo-vitta+.png' %}" alt="Vitta+">
+                
                 <span class="brand-name">Vitta+</span>
+
             </a>
+
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
 
                 <span class="navbar-toggler-icon"></span>
@@ -79,7 +88,7 @@
 
                             <li>
 
-                                <a class="dropdown-item" href="{% url 'consults_add' %}">Criar Consulta</a>
+                                <a class="dropdown-item" href="{% url 'consults_add' %}">Cadastrar Consulta</a>
 
                             </li>
 
@@ -129,8 +138,11 @@
 
                     <li class="nav-item" id="Login">
 
-                        <a class="nav-link" href="{% url 'admin:index' %}"><img
-                                src="{% static 'images/user-image.png' %}" alt="Login"></a>
+                        <a class="nav-link" href="{% url 'admin:index' %}">
+                            
+                            <img src="{% static 'images/user-image.png' %}" alt="Login">
+                        
+                        </a>
 
                     </li>
 

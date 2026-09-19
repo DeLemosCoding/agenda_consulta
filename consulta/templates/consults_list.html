@@ -2,22 +2,31 @@
 
 {% load static %}
 
+{% block title %}
+
+    Consultas | Vitta+
+
+{% endblock %}
+
 {% block content %}
 
-
 <div class="container mt-4 text-center">
+
     <h1>Lista de Consultas</h1>
+
 </div>
 
 {% for consulta in consultas %}
+
 <hr>
+
     <div class="consultas" style="padding: 10px; margin-bottom: 10px;">
         
         <div>
 
             <h3> Paciente: {{ consulta.patient.name }}</h3>
 
-            <p> Médico: {{ consulta.doctor.name }}</p>
+            <p> Médico: Dr. {{ consulta.doctor.name }}</p>
 
             <p> Data: {{ consulta.date|date:"d/m/Y, H:i" }}</p>
 
@@ -26,7 +35,9 @@
             <a href="{% url 'consults_delete' consulta.id %}" class="btn btn-danger">Apagar Consulta</a>
 
         </div>
+
     </div>    
+
 <hr>
 
 {% empty %}
