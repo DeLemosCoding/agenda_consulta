@@ -18,6 +18,25 @@ class Doctor(models.Model):
     def __str__(self):
         return self.name
 
+    @property
+    def rating_stars(self):
+        rating = float(self.rating)
+
+        # Arredonda para o intervalo de 0.5
+        rating = round(rating * 2) / 2
+
+        stars = []
+
+        for i in range(1, 6):
+            if rating >= i:
+                stars.append("full")
+            elif rating >= i - 0.5:
+                stars.append("half")
+            else:
+                stars.append("empty")
+
+        return stars
+    
     class Meta:
         ordering = ["CRM"]
 

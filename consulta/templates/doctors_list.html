@@ -46,7 +46,15 @@
 
                 </div>
 
-                <h2 class="card-title">{{ doctor.name }}</h2>
+                {% if doctor.gender == "M" %}
+
+                    <h2 class="card-title">Dr. {{ doctor.name }}</h2>
+
+                {% else %}
+
+                    <h2 class="card-title">Dra. {{ doctor.name }}</h2>
+
+                {% endif %}
 
                 <p class="card-text">
 
@@ -64,8 +72,37 @@
 
                 <p class="card-text">
 
-                    <strong>Classificação:</strong>
-                    {{ doctor.rating }}/5
+                    {% if doctor.rating %}
+
+                        <strong>Classificação:</strong>
+
+                        <div class="text-warning">
+
+                            <p>
+
+                                {% for star in doctor.rating_stars %}
+
+                                    {% if star == "full" %}
+
+                                        <i class="bi bi-star-fill"></i>
+
+                                    {% elif star == "half" %}
+
+                                        <i class="bi bi-star-half"></i>
+                                        
+                                    {% else %}
+
+                                        <i class="bi bi-star"></i>
+
+                                    {% endif %}
+
+                                {% endfor %}
+
+                            </p>
+
+                        </div>
+
+                    {% endif %}
 
                 </p>
 
