@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block title %}
+
+    Acesso negado | Vitta+
+    
+{% endblock %}
+
+{% block content %}
+
+<div class="container text-center py-5">
+
+    <h1 class="display-1 fw-bold">
+
+        Erro 403
+
+    </h1>
+
+    <h2>
+
+        Acesso negado
+
+    </h2>
+
+    <p class="lead">
+
+        Você não possui permissão para acessar esta página.
+
+    </p>
+
+    <a href="{% url 'home' %}" class="btn btn-primary">Voltar para o início</a>
+
+</div>
+
+{% endblock %}

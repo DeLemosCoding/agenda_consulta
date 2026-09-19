@@ -16,3 +16,5 @@ urlpatterns = [
     path('consults_edit/<int:id>/', views.consults_edit, name="consults_edit"),
     path('consults_delete/<int:id>/', views.consults_delete, name="consults_delete"),
 ]
+
+handler403 = 'consultas.views.permission_denied'

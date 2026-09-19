@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import permission_required
 from .models import Doctor, Patient, Consultation
 from .forms import DoctorForm, PatientForm, ConsultationForm
 
@@ -12,14 +12,13 @@ def home(request):
 
     return render(request, 'index.html', {'doctors': doctors})
 
-@login_required
+@permission_required('consultas.view_doctor', raise_exception=True)
 def doctors_list(request):
     doctors = Doctor.objects.all().order_by('CRM')
 
     return render(request, 'doctors_list.html', {'doctors': doctors})
 
-
-@login_required
+@permission_required('consultas.add_doctor', raise_exception=True)
 def doctors_add(request):
     if request.method == 'POST':
         form = DoctorForm(request.POST, request.FILES)
@@ -35,7 +34,7 @@ def doctors_add(request):
 
     return render(request, 'doctors_add.html', {'form': form})
 
-@login_required
+@permission_required('consultas.change_doctor', raise_exception=True)
 def doctors_edit(request, id):
     doctor = get_object_or_404(Doctor, id=id)
 
@@ -54,7 +53,7 @@ def doctors_edit(request, id):
     return render(request, 'doctors_edit.html', {'form': form, 'doctor': doctor})
 
 
-@login_required
+@permission_required('consultas.delete_doctor', raise_exception=True)
 def doctors_delete(request, id):
     doctor = get_object_or_404(Doctor, id=id)
 
@@ -66,13 +65,13 @@ def doctors_delete(request, id):
 
     return render(request, 'doctors_delete.html', {'doctor': doctor})
 
-@login_required
+@permission_required('consultas.view_patient', raise_exception=True)
 def patients_list(request):
     patients = Patient.objects.all()
 
     return render(request, 'patients_list.html', {'patients': patients})
 
-@login_required
+@permission_required('consultas.add_patient', raise_exception=True)
 def patients_add(request):
     if request.method == 'POST':
         form = PatientForm(request.POST)
@@ -85,7 +84,7 @@ def patients_add(request):
 
     return render(request, 'patients_add.html', {'form': form})
 
-@login_required
+@permission_required('consultas.change_patient', raise_exception=True)
 def patients_edit(request, id):
     patient = get_object_or_404(Patient, id=id)
 
@@ -102,7 +101,7 @@ def patients_edit(request, id):
 
     return render(request, 'patients_edit.html', {'form': form})
 
-@login_required
+@permission_required('consultas.delete_patient', raise_exception=True)
 def patients_delete(request, id):
     patient = get_object_or_404(Patient, id=id)
 
@@ -113,13 +112,13 @@ def patients_delete(request, id):
 
     return render(request, 'patients_delete.html', {'patient': patient})
 
-@login_required
+@permission_required('consultas.view_consultation', raise_exception=True)
 def consults_list(request):
     consultas = Consultation.objects.select_related('doctor','patient').order_by('date')
     
     return render(request, 'consults_list.html', { "consultas": consultas })
 
-@login_required
+@permission_required('consultas.add_consultation', raise_exception=True)
 def consults_add(request):
     if request.method == 'POST':
         form = ConsultationForm(request.POST)
@@ -134,7 +133,7 @@ def consults_add(request):
 
     return render(request, 'consults_add.html', { 'form': form })
 
-@login_required
+@permission_required('consultas.change_consultation', raise_exception=True)
 def consults_edit(request, id):
     consulta = get_object_or_404(Consultation, id=id)
 
@@ -151,7 +150,7 @@ def consults_edit(request, id):
 
     return render(request, 'consults_edit.html', {'form': form})
 
-@login_required
+@permission_required('consultas.delete_consultation', raise_exception=True)
 def consults_delete(request, id):
     consulta = get_object_or_404(Consultation, id=id)
 
@@ -161,3 +160,7 @@ def consults_delete(request, id):
         return redirect("consults_list")
 
     return render(request, "consults_delete.html", {"consulta": consulta})
+
+def permission_denied(request, exception):
+
+    return render(request, '403.html', status=403)

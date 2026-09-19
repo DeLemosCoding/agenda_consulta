@@ -12,9 +12,19 @@
 
 {% block content %}
 
-<div class="container mt-4 text-center">
+<div class="container d-flex flex-row mt-4 mb-4 pt-2 pb-2">
 
-    <h1>Lista de Médicos</h1>
+    <div class="container text-center justify-content-between">
+
+        <div class="card-header bg-success text-white justify-content-center d-flex align-items-center">
+
+            <h1>Lista de Médicos</h1>
+
+        </div>
+
+    </div>
+
+    <a href="{% url 'doctors_add' %}" class="btn btn-primary">Novo Médico</a>
 
 </div>
 

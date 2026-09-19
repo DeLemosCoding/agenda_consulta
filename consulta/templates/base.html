@@ -52,19 +52,31 @@
 
                     <li class="nav-item">
 
+                        {% if perms.consultas.view_doctor %}
+
                         <a class="nav-link" href="{% url 'doctors_list' %}">Lista de Médicos</a>
+
+                        {% endif %}
 
                     </li>
 
                     <li class="nav-item">
+
+                        {% if perms.consultas.view_patient %}
 
                         <a class="nav-link" href="{% url 'patients_list' %}">Lista de Pacientes</a>
 
+                        {% endif %}
+
                     </li>
 
                     <li class="nav-item">
 
+                        {% if perms.consultas.view_consultation %}
+
                         <a class="nav-link" href="{% url 'consults_list' %}">Lista de Consultas</a>
+
+                        {% endif %}
 
                     </li>
 
@@ -76,19 +88,31 @@
 
                             <li>
 
+                                {% if perms.consultas.add_doctor %}
+
                                 <a class="dropdown-item" href="{% url 'doctors_add' %}">Cadastrar Médico</a>
+
+                                {% endif %}
 
                             </li>
 
                             <li>
+
+                                {% if perms.consultas.add_patient %}
 
                                 <a class="dropdown-item" href="{% url 'patients_add' %}">Cadastrar Paciente</a>
 
+                                {% endif %}
+
                             </li>
 
                             <li>
 
+                                {% if perms.consultas.add_consultation %}
+
                                 <a class="dropdown-item" href="{% url 'consults_add' %}">Cadastrar Consulta</a>
+
+                                {% endif %}
 
                             </li>
 
