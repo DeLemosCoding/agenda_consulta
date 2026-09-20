@@ -28,29 +28,31 @@
 
 <body id="top" class="d-flex flex-column min-vh-100 overflow-x-hidden">
 
-    {% if user.is_authenticated %}
+    <nav class="navbar navbar-expand-sm navbar-dark sticky-top">
 
-        <nav class="navbar navbar-expand-sm navbar-dark sticky-top">
+        <div class="container-fluid">
 
-            <div class="container-fluid">
+            <a class="navbar-brand logo-brand" href="{% url 'home' %}">
 
-                <a class="navbar-brand logo-brand" href="{% url 'home' %}">
+                <img src="{% static 'images/logo-vitta+.png' %}" alt="Vitta+">
+                
+                <span class="brand-name">Vitta+</span>
 
-                    <img src="{% static 'images/logo-vitta+.png' %}" alt="Vitta+">
+            </a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
+
+                <span class="navbar-toggler-icon"></span>
+
+            </button>
+
+            <div class="collapse navbar-collapse" id="mynavbar">
+
+                <ul class="navbar-nav me-auto">
+
+                    <!-- Páginas que exigem login -->
                     
-                    <span class="brand-name">Vitta+</span>
-
-                </a>
-
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
-
-                    <span class="navbar-toggler-icon"></span>
-
-                </button>
-
-                <div class="collapse navbar-collapse" id="mynavbar">
-
-                    <ul class="navbar-nav me-auto">
+                    {% if user.is_authenticated %}
 
                         <li class="nav-item">
 
@@ -82,11 +84,17 @@
 
                         </li>
 
-                        <li class="nav-item dropdown">
+                    {% endif %}
 
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Menu</a>
+                    <!-- Menu -->
 
-                            <ul class="dropdown-menu">
+                    <li class="nav-item dropdown">
+
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Menu</a>
+
+                        <ul class="dropdown-menu">
+
+                            {% if user.is_authenticated %}
 
                                 <li>
 
@@ -118,69 +126,71 @@
 
                                 </li>
 
-                                <hr>
+                            {% endif %}
 
-                                <li>
+                            <!-- Opções públicas -->
 
-                                    <a class="dropdown-item" href="#">Contatos</a>
+                            <hr>
 
-                                </li>
+                            <li>
 
-                                <li>
+                                <a class="dropdown-item" href="#">Contatos</a>
 
-                                    <a class="dropdown-item" href="#">Links</a>
+                            </li>
 
-                                </li>
+                            <li>
 
-                                <hr>
+                                <a class="dropdown-item" href="#">Links</a>
 
-                                <li>
+                            </li>
 
-                                    <a class="dropdown-item" href="#">Sobre Nós</a>
+                            <hr>
 
-                                </li>
+                            <li>
 
-                                <li>
+                                <a class="dropdown-item" href="#">Sobre Nós</a>
 
-                                    <a class="dropdown-item" href="#">Sobre o Autor</a>
+                            </li>
 
-                                </li>
+                            <li>
 
-                                <hr>
+                                <a class="dropdown-item" href="#">Sobre o Autor</a>
 
-                                <li>
+                            </li>
 
-                                    <a class="dropdown-item" href="#">Políticas de Privacidade</a>
+                            <hr>
 
-                                </li>
+                            <li>
 
-                            </ul>
+                                <a class="dropdown-item" href="#">Políticas de Privacidade</a>
 
-                        </li>
+                            </li>
 
-                    </ul>
+                        </ul>
 
-                    <form class="nav-form d-flex">
+                    </li>
 
-                        <li class="nav-item" id="Login">
+                </ul>
 
-                            <a class="nav-link" href="{% url 'admin:index' %}">
-                                
-                                <img src="{% static 'images/user-image.png' %}" alt="Login">
+                <form class="nav-form d-flex">
+
+                    <li class="nav-item" id="Login">
+
+                        <a class="nav-link" href="{% url 'admin:index' %}">
                             
-                            </a>
+                            <img src="{% static 'images/user-image.png' %}" alt="Login">
+                        
+                        </a>
 
-                        </li>
+                    </li>
 
-                    </form>
-
-                </div>
+                </form>
 
             </div>
 
-        </nav>
+        </div>
 
-    {% endif %}
+    </nav>
 
     <main class="flex-grow-1">
 
