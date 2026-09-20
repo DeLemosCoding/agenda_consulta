@@ -92,9 +92,17 @@
 
                             <td>
 
-                                <a href="{% url 'patients_edit' patient.id %}" class="btn btn-primary btn-sm">Editar</a>
+                                {% if perms.consulta.change_patient %}
 
-                                <a href="{% url 'patients_delete' patient.id %}" class="btn btn-danger btn-sm">Apagar</a>
+                                    <a href="{% url 'patients_edit' patient.id %}" class="btn btn-primary btn-sm">Editar</a>
+
+                                {% endif %}
+
+                                {% if perms.consulta.delete_patient %}
+
+                                    <a href="{% url 'patients_delete' patient.id %}" class="btn btn-danger btn-sm">Apagar</a>
+
+                                {% endif %}
 
                             </td>
 

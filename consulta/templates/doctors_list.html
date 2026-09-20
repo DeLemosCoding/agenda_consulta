@@ -32,118 +32,125 @@
 
     {% for doctor in doctors %}
 
-    <div class="col-md-4 mb-4">
+        <div class="col-md-4 mb-4">
 
-        <div class="card">
+            <div class="card">
 
-            <div class="card-body">
+                <div class="card-body">
 
-                <div class="card-image">
+                    <div class="card-image">
 
-                    {% if doctor.photo %}
+                        {% if doctor.photo %}
 
-                        <img src="{{ doctor.photo.url }}" alt="Foto {{ doctor.name }}" class="card-img-top">
+                            <img src="{{ doctor.photo.url }}" alt="Foto {{ doctor.name }}" class="card-img-top">
+
+                        {% else %}
+
+                            <div class="p-3">
+
+                                <p>Sem foto</p>
+
+                            </div>
+
+                        {% endif %}
+
+                    </div>
+
+                    {% if doctor.gender == "M" %}
+
+                        <h2 class="card-title">Dr. {{ doctor.name }}</h2>
 
                     {% else %}
 
-                        <div class="p-3">
-
-                            <p>Sem foto</p>
-
-                        </div>
+                        <h2 class="card-title">Dra. {{ doctor.name }}</h2>
 
                     {% endif %}
+
+                    <p class="card-text">
+
+                        <strong>Especialidade:</strong>
+                        {{ doctor.expertise }}
+
+                    </p>
+
+                    <p class="card-text">
+
+                        <strong>CRM:</strong>
+                        {{ doctor.CRM|format_crm }}
+
+                    </p>
+
+                    <p class="card-text">
+
+                        {% if doctor.rating %}
+
+                            <strong>Classificação:</strong>
+
+                            <div class="text-warning">
+
+                                <p>
+
+                                    {% for star in doctor.rating_stars %}
+
+                                        {% if star == "full" %}
+
+                                            <i class="bi bi-star-fill"></i>
+
+                                        {% elif star == "half" %}
+
+                                            <i class="bi bi-star-half"></i>
+                                            
+                                        {% else %}
+
+                                            <i class="bi bi-star"></i>
+
+                                        {% endif %}
+
+                                    {% endfor %}
+
+                                </p>
+
+                            </div>
+
+                        {% endif %}
+
+                    </p>
+
+                    <p class="card-text">
+
+                        <strong>Local:</strong>
+                        {{ doctor.place }}
+
+                    </p>
+
+                    <p class="card-text">
+
+                        <strong>Consulta:</strong>
+                        R$ {{ doctor.price }}
+
+                    </p>
+
+                    <td>
+
+                        {% if perms.consulta.change_doctor %}
+
+                            <a href="{% url 'doctors_edit' doctor.id %}" class="btn btn-primary btn-sm">Editar</a>
+
+                        {% endif %}
+
+                        {% if perms.consulta.delete_doctor %}
+
+                            <a href="{% url 'doctors_delete' doctor.id %}" class="btn btn-danger btn-sm">Apagar</a>
+
+                        {% endif %}
+
+                    </td>
 
                 </div>
-
-                {% if doctor.gender == "M" %}
-
-                    <h2 class="card-title">Dr. {{ doctor.name }}</h2>
-
-                {% else %}
-
-                    <h2 class="card-title">Dra. {{ doctor.name }}</h2>
-
-                {% endif %}
-
-                <p class="card-text">
-
-                    <strong>Especialidade:</strong>
-                    {{ doctor.expertise }}
-
-                </p>
-
-                <p class="card-text">
-
-                    <strong>CRM:</strong>
-                    {{ doctor.CRM|format_crm }}
-
-                </p>
-
-                <p class="card-text">
-
-                    {% if doctor.rating %}
-
-                        <strong>Classificação:</strong>
-
-                        <div class="text-warning">
-
-                            <p>
-
-                                {% for star in doctor.rating_stars %}
-
-                                    {% if star == "full" %}
-
-                                        <i class="bi bi-star-fill"></i>
-
-                                    {% elif star == "half" %}
-
-                                        <i class="bi bi-star-half"></i>
-                                        
-                                    {% else %}
-
-                                        <i class="bi bi-star"></i>
-
-                                    {% endif %}
-
-                                {% endfor %}
-
-                            </p>
-
-                        </div>
-
-                    {% endif %}
-
-                </p>
-
-                <p class="card-text">
-
-                    <strong>Local:</strong>
-                    {{ doctor.place }}
-
-                </p>
-
-                <p class="card-text">
-
-                    <strong>Consulta:</strong>
-                    R$ {{ doctor.price }}
-
-                </p>
-
-                <td>
-
-                    <a href="{% url 'doctors_edit' doctor.id %}" class="btn btn-primary btn-sm">Editar</a>
-
-                    <a href="{% url 'doctors_delete' doctor.id %}" class="btn btn-danger btn-sm">Apagar</a>
-
-                </td>
-
 
             </div>
 
         </div>
-
-    </div>
 
     {% endfor %}
 

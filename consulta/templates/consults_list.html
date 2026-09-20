@@ -22,31 +22,39 @@
 
 {% for consulta in consultas %}
 
-<hr>
+    <hr>
 
-    <div class="consultas" style="padding: 10px; margin-bottom: 10px;">
-        
-        <div>
+        <div class="consultas" style="padding: 10px; margin-bottom: 10px;">
+            
+            <div>
 
-            <h3> Paciente: {{ consulta.patient.name }}</h3>
+                <h3> Paciente: {{ consulta.patient.name }}</h3>
 
-            <p> Médico: Dr. {{ consulta.doctor.name }}</p>
+                <p> Médico: Dr. {{ consulta.doctor.name }}</p>
 
-            <p> Data: {{ consulta.date|date:"d/m/Y, H:i" }}</p>
+                <p> Data: {{ consulta.date|date:"d/m/Y, H:i" }}</p>
 
-            <a href="{% url 'consults_edit' consulta.id %}" class="btn btn-primary">Editar Consulta</a>
+                {% if perms.consulta.change_consultation %}
 
-            <a href="{% url 'consults_delete' consulta.id %}" class="btn btn-danger">Apagar Consulta</a>
+                    <a href="{% url 'consults_edit' consulta.id %}" class="btn btn-primary">Editar Consulta</a>
 
-        </div>
+                {% endif %}
 
-    </div>    
+                {% if perms.consulta.delete_consultation %}
 
-<hr>
+                    <a href="{% url 'consults_delete' consulta.id %}" class="btn btn-danger">Apagar Consulta</a>
 
-{% empty %}
+                {% endif %}
 
-    <p>Nenhuma consulta marcada.</p>
+            </div>
+
+        </div>    
+
+    <hr>
+
+    {% empty %}
+
+        <p>Nenhuma consulta marcada.</p>
 
 {% endfor %}
 

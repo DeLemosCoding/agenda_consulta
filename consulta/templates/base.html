@@ -28,155 +28,159 @@
 
 <body id="top" class="d-flex flex-column min-vh-100 overflow-x-hidden">
 
-    <nav class="navbar navbar-expand-sm navbar-dark sticky-top">
+    {% if user.is_authenticated %}
 
-        <div class="container-fluid">
+        <nav class="navbar navbar-expand-sm navbar-dark sticky-top">
 
-            <a class="navbar-brand logo-brand" href="{% url 'home' %}">
+            <div class="container-fluid">
 
-                <img src="{% static 'images/logo-vitta+.png' %}" alt="Vitta+">
-                
-                <span class="brand-name">Vitta+</span>
+                <a class="navbar-brand logo-brand" href="{% url 'home' %}">
 
-            </a>
+                    <img src="{% static 'images/logo-vitta+.png' %}" alt="Vitta+">
+                    
+                    <span class="brand-name">Vitta+</span>
 
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
+                </a>
 
-                <span class="navbar-toggler-icon"></span>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
 
-            </button>
+                    <span class="navbar-toggler-icon"></span>
 
-            <div class="collapse navbar-collapse" id="mynavbar">
+                </button>
 
-                <ul class="navbar-nav me-auto">
+                <div class="collapse navbar-collapse" id="mynavbar">
 
-                    <li class="nav-item">
+                    <ul class="navbar-nav me-auto">
 
-                        {% if perms.consultas.view_doctor %}
+                        <li class="nav-item">
 
-                        <a class="nav-link" href="{% url 'doctors_list' %}">Lista de Médicos</a>
+                            {% if perms.consulta.view_doctor %}
 
-                        {% endif %}
+                            <a class="nav-link" href="{% url 'doctors_list' %}">Lista de Médicos</a>
 
-                    </li>
+                            {% endif %}
 
-                    <li class="nav-item">
+                        </li>
 
-                        {% if perms.consultas.view_patient %}
+                        <li class="nav-item">
 
-                        <a class="nav-link" href="{% url 'patients_list' %}">Lista de Pacientes</a>
+                            {% if perms.consulta.view_patient %}
 
-                        {% endif %}
+                            <a class="nav-link" href="{% url 'patients_list' %}">Lista de Pacientes</a>
 
-                    </li>
+                            {% endif %}
 
-                    <li class="nav-item">
+                        </li>
 
-                        {% if perms.consultas.view_consultation %}
+                        <li class="nav-item">
 
-                        <a class="nav-link" href="{% url 'consults_list' %}">Lista de Consultas</a>
+                            {% if perms.consulta.view_consultation %}
 
-                        {% endif %}
+                            <a class="nav-link" href="{% url 'consults_list' %}">Lista de Consultas</a>
 
-                    </li>
+                            {% endif %}
 
-                    <li class="nav-item dropdown">
+                        </li>
 
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Menu</a>
+                        <li class="nav-item dropdown">
 
-                        <ul class="dropdown-menu">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Menu</a>
 
-                            <li>
+                            <ul class="dropdown-menu">
 
-                                {% if perms.consultas.add_doctor %}
+                                <li>
 
-                                <a class="dropdown-item" href="{% url 'doctors_add' %}">Cadastrar Médico</a>
+                                    {% if perms.consulta.add_doctor %}
 
-                                {% endif %}
+                                    <a class="dropdown-item" href="{% url 'doctors_add' %}">Cadastrar Médico</a>
 
-                            </li>
+                                    {% endif %}
 
-                            <li>
+                                </li>
 
-                                {% if perms.consultas.add_patient %}
+                                <li>
 
-                                <a class="dropdown-item" href="{% url 'patients_add' %}">Cadastrar Paciente</a>
+                                    {% if perms.consulta.add_patient %}
 
-                                {% endif %}
+                                    <a class="dropdown-item" href="{% url 'patients_add' %}">Cadastrar Paciente</a>
 
-                            </li>
+                                    {% endif %}
 
-                            <li>
+                                </li>
 
-                                {% if perms.consultas.add_consultation %}
+                                <li>
 
-                                <a class="dropdown-item" href="{% url 'consults_add' %}">Cadastrar Consulta</a>
+                                    {% if perms.consulta.add_consultation %}
 
-                                {% endif %}
+                                    <a class="dropdown-item" href="{% url 'consults_add' %}">Cadastrar Consulta</a>
 
-                            </li>
+                                    {% endif %}
 
-                            <hr>
+                                </li>
 
-                            <li>
+                                <hr>
 
-                                <a class="dropdown-item" href="#">Contatos</a>
+                                <li>
 
-                            </li>
+                                    <a class="dropdown-item" href="#">Contatos</a>
 
-                            <li>
+                                </li>
 
-                                <a class="dropdown-item" href="#">Links</a>
+                                <li>
 
-                            </li>
+                                    <a class="dropdown-item" href="#">Links</a>
 
-                            <hr>
+                                </li>
 
-                            <li>
+                                <hr>
 
-                                <a class="dropdown-item" href="#">Sobre Nós</a>
+                                <li>
 
-                            </li>
+                                    <a class="dropdown-item" href="#">Sobre Nós</a>
 
-                            <li>
+                                </li>
 
-                                <a class="dropdown-item" href="#">Sobre o Autor</a>
+                                <li>
 
-                            </li>
+                                    <a class="dropdown-item" href="#">Sobre o Autor</a>
 
-                            <hr>
+                                </li>
 
-                            <li>
+                                <hr>
 
-                                <a class="dropdown-item" href="#">Políticas de Privacidade</a>
+                                <li>
 
-                            </li>
+                                    <a class="dropdown-item" href="#">Políticas de Privacidade</a>
 
-                        </ul>
+                                </li>
 
-                    </li>
+                            </ul>
 
-                </ul>
+                        </li>
 
-                <form class="nav-form d-flex">
+                    </ul>
 
-                    <li class="nav-item" id="Login">
+                    <form class="nav-form d-flex">
 
-                        <a class="nav-link" href="{% url 'admin:index' %}">
+                        <li class="nav-item" id="Login">
+
+                            <a class="nav-link" href="{% url 'admin:index' %}">
+                                
+                                <img src="{% static 'images/user-image.png' %}" alt="Login">
                             
-                            <img src="{% static 'images/user-image.png' %}" alt="Login">
-                        
-                        </a>
+                            </a>
 
-                    </li>
+                        </li>
 
-                </form>
+                    </form>
+
+                </div>
 
             </div>
 
-        </div>
+        </nav>
 
-    </nav>
+    {% endif %}
 
     <main class="flex-grow-1">
 
