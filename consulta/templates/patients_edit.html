@@ -1,10 +1,20 @@
 {% extends 'base.html' %}
 
+{% block title %}
+
+    Editar Paciente | Vitta+
+
+{% endblock %}
+
 {% block content %}
 
 <div class="container mt-4">
 
-    <h1 class="mb-4">Editar Paciente</h1>
+    <div class="card-header bg-success text-white justify-content-center d-flex align-items-center pt-2 pb-2 mb-4">
+
+        <h1 class="mb-4">Editar Paciente</h1>
+    
+    </div>
 
     <form method="post">
 
@@ -12,13 +22,13 @@
 
         {{ form.as_p }}
 
-        <button type="submit" class="btn btn-success">
+        <button type="submit" class="btn btn-primary">
 
             Salvar alterações
 
         </button>
 
-        <a href="{% url 'patients_list' %}" class="btn btn-secondary">
+        <a href="{% url 'patients_list' %}" class="btn btn-primary">
 
             Cancelar
 

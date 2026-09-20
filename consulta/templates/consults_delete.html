@@ -2,21 +2,37 @@
 
 {% load static %}
 
+{% block title %}
+
+    Apagar Consulta | Vitta+
+
+{% endblock %}
+
 {% block content %}
 
-<h1>Excluir Consulta</h1>
+<div class="card-header bg-success text-white justify-content-center d-flex align-items-center pt-2 pb-2 mb-4">
+
+    <h1>Excluir Consulta</h1>
+
+</div>
 
 <p>
+
     Tem certeza que deseja excluir a consulta de
     <strong>{{ consulta.patient.name }}</strong>?
+
 </p>
 
 <p>
+
     Médico: {{ consulta.doctor.name }}
+
 </p>
 
 <p>
+
     Data: {{ consulta.date|date:"d/m/Y, H:i" }}
+
 </p>
 
 <form method="POST">
