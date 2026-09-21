@@ -20,6 +20,7 @@ html {
 
 body {
     position: relative;
+    isolation: isolate;
     min-height: 100vh;
     background:
         radial-gradient(circle at top left, rgba(0, 169, 113, 0.16), transparent 18%),
@@ -38,7 +39,7 @@ body::before {
     background: linear-gradient(rgba(15, 58, 46, 0.02) 1px, transparent 1px), linear-gradient(90deg, rgba(15, 58, 46, 0.02) 1px, transparent 1px);
     background-size: 26px 26px;
     pointer-events: none;
-    z-index: 0;
+    z-index: -1;
 }
 
 body::after {
@@ -48,7 +49,7 @@ body::after {
     background: radial-gradient(circle at center, rgba(0, 169, 113, 0.06), transparent 48%);
     filter: blur(70px);
     pointer-events: none;
-    z-index: 0;
+    z-index: -1;
 }
 
 main,
@@ -93,6 +94,8 @@ nav {
 }
 
 .navbar {
+    position: relative;
+    z-index: 1030;
     padding-top: 0.82rem;
     padding-bottom: 0.82rem;
 }
@@ -165,27 +168,47 @@ nav {
     box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08), 0 10px 20px rgba(0, 0, 0, 0.18);
 }
 
+.nav-item.dropdown {
+    position: relative;
+    z-index: 1100;
+}
+
+.navbar-collapse,
+.navbar-nav {
+    overflow: visible;
+}
+
 .dropdown-menu {
-    border: 1px solid var(--line);
-    background: rgba(7, 20, 16, 0.86);
-    box-shadow: var(--shadow-soft);
-    border-radius: 22px;
-    padding: 0.8rem 0.65rem;
-    backdrop-filter: blur(18px);
+    position: absolute !important;
+    top: 100%;
+    left: 0;
+    z-index: 1200;
+    display: none;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    background: rgba(255, 255, 255, 0.92);
+    box-shadow: 0 20px 38px rgba(11, 93, 71, 0.18);
+    border-radius: 18px;
+    padding: 0.7rem;
+    min-width: 220px;
+}
+
+.dropdown-menu.show {
+    display: block !important;
 }
 
 .dropdown-item {
     border-radius: 12px;
-    padding: 0.82rem 1rem;
+    padding: 0.8rem 0.9rem;
     color: var(--text);
     font-weight: 700;
+    background: transparent;
 }
 
 .dropdown-item:hover,
 .dropdown-item:focus {
-    background: linear-gradient(135deg, rgba(143, 247, 203, 0.12), rgba(0, 245, 160, 0.12));
-    color: var(--text);
-    box-shadow: inset 0 0 0 1px rgba(143, 247, 203, 0.2);
+    background: linear-gradient(135deg, rgba(0, 169, 113, 0.08), rgba(0, 169, 113, 0.15));
+    color: var(--cor-escura);
+    box-shadow: inset 0 0 0 1px rgba(0, 169, 113, 0.12);
 }
 
 .nav-form {
